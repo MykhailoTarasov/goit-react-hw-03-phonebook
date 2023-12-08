@@ -9,13 +9,29 @@ import { Title } from './App.Styled';
 class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Michael Jordan', number: '+13236723468' },
-      { id: 'id-2', name: 'Christian Bale', number: '+13239168634' },
-      { id: 'id-3', name: 'Emma Stone', number: '+14242706351' },
-      { id: 'id-4', name: 'Densel Washington', number: '+14243250522' },
+      // { id: 'id-1', name: 'Michael Jordan', number: '+13236723468' },
+      // { id: 'id-2', name: 'Christian Bale', number: '+13239168634' },
+      // { id: 'id-3', name: 'Emma Stone', number: '+14242706351' },
+      // { id: 'id-4', name: 'Densel Washington', number: '+14243250522' },
     ],
     filter: '',
   };
+
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('changed-contacts');
+    if(savedContacts!== null) {
+      this.setState({
+        contacts: JSON.parse(savedContacts),
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('changed-contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
 
   addContact = newContact => {
     const nameExists = this.state.contacts.some(
