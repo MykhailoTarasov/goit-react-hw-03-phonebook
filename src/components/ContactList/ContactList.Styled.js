@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const List = styled.ul`
   padding: 0;
   list-style: none;
@@ -20,7 +21,7 @@ export const ListItem = styled.li`
 `;
 
 export const ButtonItem = styled.button`
-  width: 100px;
+  width: 40.2px;
   align-self: center;
 
   padding: 10px;
@@ -28,7 +29,7 @@ export const ButtonItem = styled.button`
   background-color: #4d83c2;
   cursor: pointer;
 
-  border-radius: 4px;
+  border-radius: 5px;
 `;
 
 export const Text = styled.p`

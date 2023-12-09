@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import { Title } from './App.Styled';
+import { Container, Title } from './Layout';
 
 class App extends Component {
   state = {
@@ -68,17 +68,8 @@ class App extends Component {
       : contacts;
 
     return (
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: 20,
-          color: '#010101',
-          
-          textAlign: 'center',
-        }}
-      >
-        <div>
+      
+        <Container>
           <h1>Phonebook</h1>
           <ContactForm onAdd={this.addContact} />
 
@@ -88,8 +79,8 @@ class App extends Component {
             contacts={visibleContacts}
             onDeleteContact={this.deleteContact}
           />
-        </div>
-      </div>
+        </Container>
+      
     );
   }
 }
