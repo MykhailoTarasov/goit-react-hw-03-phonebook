@@ -6,32 +6,30 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import { Container, Title } from './Layout';
 
+
 class App extends Component {
   state = {
-    contacts: [
-      // { id: 'id-1', name: 'Michael Jordan', number: '+13236723468' },
-      // { id: 'id-2', name: 'Christian Bale', number: '+13239168634' },
-      // { id: 'id-3', name: 'Emma Stone', number: '+14242706351' },
-      // { id: 'id-4', name: 'Densel Washington', number: '+14243250522' },
-    ],
+    contacts: [],
     filter: '',
   };
 
   componentDidMount() {
     const savedContacts = localStorage.getItem('changed-contacts');
-    if(savedContacts!== null) {
+    if (savedContacts !== null) {
       this.setState({
         contacts: JSON.parse(savedContacts),
-      })
+      });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('changed-contacts', JSON.stringify(this.state.contacts));
+      localStorage.setItem(
+        'changed-contacts',
+        JSON.stringify(this.state.contacts)
+      );
     }
   }
-
 
   addContact = newContact => {
     const nameExists = this.state.contacts.some(
@@ -68,19 +66,17 @@ class App extends Component {
       : contacts;
 
     return (
-      
-        <Container>
-          <h1>Phonebook</h1>
-          <ContactForm onAdd={this.addContact} />
+      <Container>
+        <h1>Phonebook</h1>
+        <ContactForm onAdd={this.addContact} />
 
-          <Title>Contacts</Title>
-          <Filter filter={filter} onChangeFilter={this.changeFilter} />
-          <ContactList
-            contacts={visibleContacts}
-            onDeleteContact={this.deleteContact}
-          />
-        </Container>
-      
+        <Title>Contacts</Title>
+        <Filter filter={filter} onChangeFilter={this.changeFilter} />
+        <ContactList
+          contacts={visibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
+      </Container>
     );
   }
 }
